@@ -17,13 +17,19 @@
       let dom = document.querySelector('#root');
 
       let title = "新タイトル"
-      let link = "http://google.com"
+      let message = "新しいメッセージです"
+
+      const msg_s = {
+        fontSize: "20pt",
+        color: "red",
+        border: "1px solid blue"
+      }
 
       // 仮想DOMのエレメントを作る
       let el = (
         <div className="alert alert-primary">
           <h2>{title}</h2>
-          <h5><a href={link}>this is link!</a></h5>
+          <p style={msg_s}>{message}</p>
         </div>
       )
       // Reactを使ってHTMLタグを書き換えている
