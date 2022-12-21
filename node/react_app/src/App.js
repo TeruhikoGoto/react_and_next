@@ -28,10 +28,12 @@ class App extends Component {
   }
 }
 
+// リスト全体を表示するクラス
 class List extends Component {
   number = 1
 
   render(){
+    // this.props.data = 引数で受け取ってるdata
     let data = this.props.data;
     
     return(
@@ -49,6 +51,7 @@ class List extends Component {
   }
 }
 
+// リストの各項目を表示するクラス
 class Item extends Component {
   itm = {
     fontSize: "16pt",
