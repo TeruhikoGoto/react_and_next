@@ -1,22 +1,54 @@
 import React, {Component} from 'react'
 import './App.css';
-import Rect from './Rect'
 
 class App extends Component {
-  constructor(props){
-    super()
-    this.title = props.title
-    this.message = props.message
+  data = []
+
+  area = {
+    width: "500px",
+    height: "500px",
+    border: "1px solid blue"
   }
+
+  constructor(props){
+    super(props)
+    this.state = {
+      list: this.data
+    }
+    this.doAction = this.doAction.bind(this)
+  }
+
+  // クリックされた際に実行されるメソッド
+  doAction(e){
+    let x = e.pageX
+    let y = e.pageY
+    this.data.push({x:x, y:y})
+    this.setState({
+      list: this.data
+    })
+  }
+
+  draw(d){
+    let s = {
+      position: "absolute",
+      left: (d.x - 25) + "px",
+      top: (d.y - 25) + "px",
+      width: "50px",
+      height: "50px",
+      backgroundColor: "#66f3",
+    }
+    return <div style={s}></div>
+  }
+
   render(){
     return(
       <div>
         <h1 className="bg-primary text-white display-4">React</h1>
         <div className="container">
           <p className="subtitle">draw rectangle.</p>
-          <Rect x="200" y="200" w="200" h="200" c="#6ff9" r="25" />
-          <Rect x="300" y="300" w="200" h="200" c="#f6f9" r="75" />
-          <Rect x="400" y="400" w="200" h="200" c="#6669" r="100" />
+          <div style={this.area} onClick={this.doAction}>
+            {this.data.map((value)=>this.draw(value))}
+          </div>
         </div>
       </div>
     )
