@@ -1,23 +1,56 @@
 import React, {Component} from 'react'
 import './App.css';
-import Rect from './Rect'
 
 class App extends Component {
+  input = ''
+
   constructor(props){
-    super()
-    this.title = props.title
-    this.message = props.message
+    super(props)
   }
+
   render(){
     return(
       <div>
         <h1 className="bg-primary text-white display-4">React</h1>
         <div className="container">
-          <p className="subtitle">draw rectangle.</p>
-          <Rect x="200" y="200" w="200" h="200" c="#6ff9" r="25" />
-          <Rect x="300" y="300" w="200" h="200" c="#f6f9" r="75" />
-          <Rect x="400" y="400" w="200" h="200" c="#6669" r="100" />
+          <Message title="Children!">
+            これはコンポーネント内のコンテンツです。
+            まるでテキストを分割し、リストにして表示します。
+            改行は必要ありません。
+          </Message>
         </div>
+      </div>
+    )
+  }
+}
+
+class Message extends Component {
+  li = {
+    fontSize: "14pt",
+    fontWeight: "bold",
+    color: "#090",
+  }
+
+  render(){
+    let content = this.props.children
+    let arr = content.split('。')
+    let arr2 = [];
+    // trim(): 文字列の両端の空白を除去する。
+    // 行がblankじゃなければ、arr2にpushする。
+    for(let i = 0;i < arr.length;i++){
+      if (arr[i].trim() !== ''){
+        arr2.push(arr[i]);
+      }
+    }
+    // list: liの集合。
+    let list = arr2.map( (value, key)=>(
+      <li className="list-group-item" style={this.li}
+        key={key}>{key + 1}. {value} .</li>)
+    )
+    return(
+      <div>
+        <h2>{this.props.title}</h2>
+        <ol className="list-group">{list}</ol>
       </div>
     )
   }
