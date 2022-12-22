@@ -1,26 +1,20 @@
-import React, {Component} from 'react'
+import React, { useState } from 'react'
 import './App.css';
-import Rect from './Rect'
 
-class App extends Component {
-  constructor(props){
-    super()
-    this.title = props.title
-    this.message = props.message
-  }
-  render(){
-    return(
-      <div>
-        <h1 className="bg-primary text-white display-4">React</h1>
-        <div className="container">
-          <p className="subtitle">draw rectangle.</p>
-          <Rect x="200" y="200" w="200" h="200" c="#6ff9" r="25" />
-          <Rect x="300" y="300" w="200" h="200" c="#f6f9" r="75" />
-          <Rect x="400" y="400" w="200" h="200" c="#6669" r="100" />
+function App() {
+  const [message] = useState("Welcome to Hooks!")
+
+  return(
+    <div>
+      <h1 className="bg-primary text-white display-4">React</h1>
+      <div className="container">
+        <h4 className="my-3">Hooks sample</h4>
+        <div className="alert alert-primary text-center">
+          <p className="h5">{message}.</p>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default App;
