@@ -11,27 +11,32 @@ function AlertMessage(props) {
 
 function App() {
   // フィールドから入力された値のステートフック
-  const [val, setVal] = useState(0)
+  const [val, setVal] = useState(1000)
+  const [tax1, setTax1] = useState(0)
+  const [tax2, setTax2] = useState(0)
   // 計算結果をセットするステートフック
-  const [msg, setMsg] = useState("set a number...")
+  const [msg, setMsg] = useState(<p>set a price...</p>)
 
   const doChange = (event) => {
     setVal(event.target.value)
   }
 
-  // 1からその数字までの合計を計算する
-  // コンポーネントがマウントされたり表示が更新されたりした際は、副作用フックが実行されるという仕様になっているよう？
+  const doAction = () => {
+    let res = (
+      <div>
+        <p>軽減税率(8%) : {tax1} 円</p>
+        <p>通常税率(10%) : {tax2} 円</p>
+      </div>
+    )
+    setMsg(res)
+  }
+
   useEffect(()=>{
-    let total = 0
-    for (let i = 0;i <= val;i++){
-      total += i
-    }
-    setMsg("total: " + total + ".")
+    setTax1(Math.floor(val * 1.08))
   })
 
-  // 実験用。表示更新したらとりあえず実行されるっぽい。
   useEffect(()=>{
-    console.log("test")
+    setTax2(Math.floor(val * 1.1))
   })
 
   return(
@@ -45,6 +50,8 @@ function App() {
           <input type="number" className="form-control"
             onChange={doChange} />
         </div>
+        <button className="btn btn-primary"
+          onClick={doAction}>Calc</button>
       </div>
     </div>
   )
