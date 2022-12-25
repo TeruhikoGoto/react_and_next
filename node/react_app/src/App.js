@@ -28,6 +28,7 @@ function App() {
     name: 'no name', mail: 'no mail', age: 0
   })
 
+  // それぞれフォームの内容が変更されたときに、ステートフック更新
   const doChangeName = (event) => {
     setName(event.target.value)
   }
@@ -40,6 +41,7 @@ function App() {
     setAge(event.target.value)
   }
 
+  // フォームがsubmitされたタイミングで、現状のステートフックの値を使ってJSONを更新！
   const doSubmit = (event) => {
     setForm({name: name, mail: mail, age: age})
     event.preventDefault()
