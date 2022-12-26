@@ -21,15 +21,16 @@ function App() {
     setVal(event.target.value)
   }
 
-  const doAction = () => {
+  useEffect(() => {
     let res = (
       <div>
         <p>軽減税率(8%) : {tax1} 円</p>
-        <p>通常税率(10%) : {tax2} 円</p>
+        <p>軽減税率(10%) : {tax2} 円</p>
       </div>
     )
     setMsg(res)
-  }
+  // 第二引数に指定したステートが更新されたときは、この副作用フックを再度呼び出すことが許可される。それ以外の場合は、再度呼び出されない（スキップされる）。
+  }, [tax1, tax2])
 
   useEffect(()=>{
     setTax1(Math.floor(val * 1.08))
@@ -50,8 +51,6 @@ function App() {
           <input type="number" className="form-control"
             onChange={doChange} />
         </div>
-        <button className="btn btn-primary"
-          onClick={doAction}>Calc</button>
       </div>
     </div>
   )
