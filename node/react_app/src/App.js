@@ -13,6 +13,7 @@ function useCounter() {
 }
 
 function AlertMessage(props) {
+  // 独自フックを呼び出すときはこの形。
   const [counter, plus] = useCounter()
   return(
     <div className="alert alert-primary h5 text-center">
