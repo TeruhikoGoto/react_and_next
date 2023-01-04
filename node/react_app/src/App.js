@@ -16,7 +16,7 @@ const tax = (a)=> {
 }
 
 // 数値を計算し、メッセージを返す独自フック関数
-function useCalc(num=0, func = (a)=>{return a}, agenda) {
+function useCalc(num=0, func = (a)=>{return a}, agenda="そのままの") {
   const [msg, setMsg] = useState(null)
 
   const setValue = (p)=> {
