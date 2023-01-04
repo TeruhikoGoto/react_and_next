@@ -16,12 +16,12 @@ const tax = (a)=> {
 }
 
 // 数値を計算し、メッセージを返す独自フック関数
-function useCalc(num=0, func = (a)=>{return a}) {
+function useCalc(num=0, func = (a)=>{return a}, agenda) {
   const [msg, setMsg] = useState(null)
 
   const setValue = (p)=> {
     let res = func(p)
-    setMsg(<p className="h5">※ {p} の結果は、{res} です。</p>)
+    setMsg(<p className="h5">※ {p} の{agenda}結果は、{res} です。</p>)
   }
 
   return [msg, setValue]
@@ -29,7 +29,7 @@ function useCalc(num=0, func = (a)=>{return a}) {
 
 // 入力された数字をそのまま返すコンポーネント
 function PlainMessage(props) {
-  const [msg, setCalc] = useCalc()
+  const [msg, setCalc] = useCalc("そのままの")
 
   const onChange = (e)=> {
     setCalc(e.target.value)
@@ -46,7 +46,7 @@ function PlainMessage(props) {
 
 // 合計計算コンポーネント
 function AlertMessage(props) {
-  const [msg, setCalc] = useCalc(0, total)
+  const [msg, setCalc] = useCalc(0, total, "合計値の")
 
   const onChange = (e)=> {
     setCalc(e.target.value)
@@ -63,7 +63,7 @@ function AlertMessage(props) {
 
 // 消費税計算コンポーネント
 function CardMessage(props) {
-  const [msg, setCalc] = useCalc(0, tax)
+  const [msg, setCalc] = useCalc(0, tax, "消費税の")
 
   const onChange = (e)=> {
     setCalc(e.target.value)
