@@ -11,10 +11,29 @@ export default function Home() {
         <title>{title}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossOrigin="anonymous" />
       </Head>
+      
+      <style jsx>{`
+        h1 {
+          text-align: center;
+        }
+
+        h2 {
+          text-align: center;
+          margin: 0px 5px;
+          color: #aad;
+        }
+
+        p {
+          text-align: left;
+          margin: 0px 5px;
+          color: blue;
+          font-size: 18pt;
+        }
+      `}</style>
 
       <h1 className="bg-primary text-white display-4">React</h1>
       <div className="container">
-        <h4 className="my-3">{title}</h4>
+        <h2 className="my-3 subtitle">{title}</h2>
         <div className="alert alert-primary text-center">
           <p className="h5">{message}.</p>
         </div>
