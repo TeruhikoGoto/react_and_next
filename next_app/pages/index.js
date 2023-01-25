@@ -1,19 +1,24 @@
+import {useState} from 'react'
 import Layout from '../components/layout'
 import useSWR from 'swr'
 
 export default function Home() {
-  // テキストの形で返すfetchの即時関数
-  // なんで...argsが'/data.txt'だと判別できてる？
-  const func = (...args) => fetch(...args).then(res => res.text())
-  const { data, err } = useSWR('/data.txt', func)
+  const [ address, setAddress ] = useState('/api/hello')
+  const func = (...args) => fetch(...args).then(res => res.json())
+  const {data, err} = useSWR(address, func)
+  
+  const onChange = (e)=> {
+    setAddress('/api/hello?id=' + e.target.value)
+  }
 
   return (
     <div>
       <Layout header="Next.js" title="Top page.">
         <div className="alert alert-primary text-center">
           <h5 className="mb-4">
-            { data }
+            { JSON.stringify(data) }
           </h5>
+          <input type="number" className="form-control" onChange={onChange} />
         </div>
       </Layout>
     </div>
